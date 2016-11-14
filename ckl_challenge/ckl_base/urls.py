@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from ckl_scraper import views
+from ckl_base import views
 
 
 urlpatterns = [ 
@@ -17,5 +17,6 @@ urlpatterns = [
     #Articles
     url('^article/$', views.ArticleListCreate.as_view(), name='article'),
     url('^article/(?P<pk>[0-9]+)/$', views.ArticleDetails.as_view(), name='article-details'),
+    url('^article/search/$', views.ArticleSearch.as_view(), name='author-search'),
     
 ]

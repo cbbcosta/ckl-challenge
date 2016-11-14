@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.db.models import F
+from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_200_OK
+from rest_framework.views import APIView
 
-from ckl_scraper.models import Outlet, Author, Article, Tag
-from ckl_scraper.serializers import OutletSerializer, AuthorSerializer, \
+from ckl_base.models import Outlet, Author, Article, Tag
+from ckl_base.serializers import OutletSerializer, AuthorSerializer, \
     ArticleSerializer, TagSerializer
 
 
@@ -57,14 +61,33 @@ class ArticleDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ArticleSerializer
     
 
+class ArticleSearch(APIView):
+    
+    def post(self, request, format=None):
+        try:
+            article_title = request.query_params['title']
+        except:
+            return Response(status=HTTP_404_NOT_FOUND)
+        
+        articles = Article.objects.filter(F(title__icontains=aticle_title))
+        serializer = ArticleSerializer(articles, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
+        
+    
+
 
 class TagList(generics.ListAPIView):
-    
+    """
+    Return all the tags in the database.
+    """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     
     
 class TagDetails(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Return an specific tag, passing the id, and also update and delete the selected tag.
+    """
     
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
