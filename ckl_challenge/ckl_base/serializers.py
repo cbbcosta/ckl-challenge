@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ckl_base.models import Outlet, Author, Article, Tag
+from ckl_challenge.ckl_base.models import Outlet, Author, Article, Tag
 
 
 class OutletSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from ckl_base import views
+from ckl_challenge.ckl_base import views
 
 
 urlpatterns = [ 

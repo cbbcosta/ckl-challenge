@@ -5,8 +5,8 @@ from rest_framework import generics
 from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_200_OK
 from rest_framework.views import APIView
 
-from ckl_base.models import Outlet, Author, Article, Tag
-from ckl_base.serializers import OutletSerializer, AuthorSerializer, \
+from ckl_challenge.ckl_base.models import Outlet, Author, Article, Tag
+from ckl_challenge.ckl_base.serializers import OutletSerializer, AuthorSerializer, \
     ArticleSerializer, TagSerializer
 
 

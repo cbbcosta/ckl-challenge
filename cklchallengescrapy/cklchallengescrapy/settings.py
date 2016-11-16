@@ -3,9 +3,12 @@
 #Django settings
 import sys
 import os
+import django
+django.setup()
 
-sys.path.append('/home/clarice/dev/python/ckl-challenge/ckl-challenge/ckl_challenge')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ckl_challenge.settings'
+sys.path.append('ckl_challege.ckl_challenge.settings.BASE_DIR')
+os.environ.setdefault['DJANGO_SETTINGS_MODULE'] = 'ckl_challenge.ckl_challenge.settings'
+
 
 # Scrapy settings for cklchallengescrapy project
 #
