@@ -7,7 +7,7 @@ class Outlet(models.Model):
     pub_date = models.DateTimeField(null=True)
     
     def __str__(self):
-        return self.description
+        return self.name
 
 
 
@@ -24,7 +24,7 @@ class Author(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=150, null=True)
     content = models.TextField()
-    pub_date = models.DateTimeField(null=True)
+    pub_date = models.DateTimeField(null=True, auto_now_add=True)
     authors = models.ManyToManyField('Author')
     tags = models.ManyToManyField('Tag')
     outlet = models.ForeignKey('Outlet', related_name='outlet_article')

@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 
 #Django settings
-import sys
 import os
+import sys
 import django
-django.setup()
 
-sys.path.append('ckl_challege.ckl_challenge.settings.BASE_DIR')
-os.environ.setdefault['DJANGO_SETTINGS_MODULE'] = 'ckl_challenge.ckl_challenge.settings'
+DJANGO_PROJECT_PATH = '/home/devct/dev/projetos/ckl-challenge/ckl_challenge'
+DJANGO_SETTINGS_MODULE = 'ckl_challenge.settings'
+
+sys.path.insert(0, DJANGO_PROJECT_PATH)
+os.environ['DJANGO_SETTINGS_MODULE'] = DJANGO_SETTINGS_MODULE
+django.setup()
 
 
 # Scrapy settings for cklchallengescrapy project
@@ -75,9 +78,10 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'cklchallengescrapy.pipelines.ArticlePipeline': 1000,
-    'cklchallengescrapy.pipelines.AuthorPipeline': 1000,
-    'cklchallengescrapy.pipelines.OutletPipeline': 1000,
+#     'cklchallengescrapy.pipelines.ArticlePipeline': 1000,
+#     'cklchallengescrapy.pipelines.AuthorPipeline': 1000,
+#     'cklchallengescrapy.pipelines.OutletPipeline': 1000,
+    'cklchallengescrapy.pipelines.ArticleTestPipeline': 1000,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

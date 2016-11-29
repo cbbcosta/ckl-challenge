@@ -16,9 +16,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# os.environ['SCRAPY_SETTINGS_MODULE'] = 'cklchallengescrapy.settings'
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -45,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     
     #Base scraper
-    'ckl_challenge.ckl_base',
+    'ckl_base',
     
 ]
 
@@ -59,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ckl_challenge.ckl_challenge.urls'
+ROOT_URLCONF = 'ckl_challenge.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ckl_challenge.ckl_challenge.wsgi.application'
+WSGI_APPLICATION = 'ckl_challenge.wsgi.application'
 
 
 # Database
