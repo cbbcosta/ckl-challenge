@@ -78,10 +78,10 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-#     'cklchallengescrapy.pipelines.ArticlePipeline': 1000,
 #     'cklchallengescrapy.pipelines.AuthorPipeline': 1000,
 #     'cklchallengescrapy.pipelines.OutletPipeline': 1000,
-    'cklchallengescrapy.pipelines.ArticleTestPipeline': 1000,
+    'cklchallengescrapy.pipelines.ArticlePipeline': 1000,
+    'cklchallengescrapy.pipelines.NewsOutletPipeline': 1000,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

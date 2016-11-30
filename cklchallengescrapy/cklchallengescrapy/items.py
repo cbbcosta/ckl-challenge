@@ -19,6 +19,7 @@ class OutletItem(DjangoItem):
 
 class AuthorItem(DjangoItem):
     django_model = Author
+    url = Field()
     
 class ArticleItem(DjangoItem):
     django_model = Article

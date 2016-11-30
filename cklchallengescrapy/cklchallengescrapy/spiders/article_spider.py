@@ -3,12 +3,13 @@ from scrapy.spider import Spider
 from scrapy.spiders import BaseSpider
 
 from cklchallengescrapy.items import ArticleItem, TagItem, AuthorItem
+from ckl_base.models import Outlet
 
 
-class ArticleTestSpider(BaseSpider):
+class ArticleSpider(BaseSpider):
     name="article_spider"
     allowed_domains=["techcrunch.com"]
-    start_urls=["https://techcrunch.com/2016/11/13/how-drones-will-reshape-the-enterprise/"]
+    start_urls=["https://techcrunch.com/2016/11/30/aws-gives-developers-larger-instances-to-work-with/"]
     
     def parse(self, response):
         for sel in response.xpath('//header[@class="article-header page-title"]'):
@@ -17,7 +18,15 @@ class ArticleTestSpider(BaseSpider):
             content = sel.xpath('//div[@class="article-entry text"]/p/text()').extract()
             url = response.url
             return ArticleItem(title=title, pub_date=pub_date, content=content, url=url)
-            
+#             print(ArticleItem)
+#             yield Request(str(self.start_urls), callback=self.parse_authors)
+    
+#     def parse_authors(self, response):
+#         for sel in response.xpath('//header[@class="article-header page-title"]'):
+#             url=response.url
+#             name = sel.xpath('.//div/div/a[@rel="author"]/text()').extract()
+#             profile_page = "https://techcrunch.com" + str(sel.xpath('.//div/div/a[@rel="author"]/@href').extract())
+#             return AuthorItem(name=name, profile_page=profile_page, url=url)
 
 
 # class ArticleSpider(Spider):

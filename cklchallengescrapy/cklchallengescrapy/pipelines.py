@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import django
+from django.db.utils import IntegrityError
+from scrapy.exceptions import DropItem
 
-from ckl_base.models import Outlet
+from ckl_base.models import Outlet, Article, Author
 from cklchallengescrapy.items import AuthorItem, ArticleItem, OutletItem
 
 
@@ -17,13 +19,38 @@ django.setup()
 Pipelines for storing scraped items in the database.
 All the process_item methods are called for every pipeline component of each pipeline.
 """
-class ArticleTestPipeline(object):
+class NewsOutletPipeline(object):
     def process_item(self, item, spider):
-        item.save(commit=False)
-        url = item['url'] 
-        item['outlet_id'] = Outlet.objects.get(id=1).id
-        item.save()
+        outlet = Outlet(outlet_url=item['outlet_url'], name=item['name'], pub_date=item['pub_date'])
+        outlet.save()
         return item
+
+class ArticlePipeline(object):
+    def process_item(self, item, spider):
+        url = item['url']
+        outlet = Outlet.objects.get(outlet_url__exact=url)
+        article = Article(title=item['title'][0],
+                pub_date=item['pub_date'], content=item['content'], outlet = outlet)
+        try:
+            article.save()
+        except IntegrityError:
+            raise DropItem("Contains duplicate domain: %s" % item['url'][0])
+        return item
+
+
+
+
+# class AuthorPipeline(object):
+#     def process_item(self, item, spider):
+#         url = item['url']
+#         article = Article.objects.get(url__exact=url)
+#         author = Author(name=item['name'][0],
+#                 profile_page=item['profile_page'])
+#         article.authors=author
+#         article.save()
+#         if Author.objects.get(name__exact=author.name) is None:
+#             author.save()
+#         return item
 
 # class OutletPipeline(object):
 #     def process_item(self, item, spider):
