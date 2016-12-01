@@ -23,4 +23,5 @@ service-identity==16.0.0
 six==1.10.0
 Twisted==16.5.0
 w3lib==1.16.0
+whitenoise==3.2.2
 zope.interface==4.3.2
