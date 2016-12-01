@@ -21,21 +21,21 @@ All the process_item methods are called for every pipeline component of each pip
 """
 class NewsOutletPipeline(object):
     def process_item(self, item, spider):
-        outlet = Outlet(outlet_url=item['outlet_url'], name=item['name'], pub_date=item['pub_date'])
+        outlet = Outlet(outlet_url=item['outlet_url'], name=item['name'])
         outlet.save()
         return item
 
-class ArticlePipeline(object):
-    def process_item(self, item, spider):
-        url = item['url']
-        outlet = Outlet.objects.get(outlet_url__exact=url)
-        article = Article(title=item['title'][0],
-                pub_date=item['pub_date'], content=item['content'], outlet = outlet)
-        try:
-            article.save()
-        except IntegrityError:
-            raise DropItem("Contains duplicate domain: %s" % item['url'][0])
-        return item
+# class ArticlePipeline(object):
+#     def process_item(self, item, spider):
+#         url = item['url']
+#         outlet = Outlet.objects.get(outlet_url__exact=url)
+#         article = Article(title=item['title'][0],
+#                 pub_date=item['pub_date'], content=item['content'], outlet = outlet)
+#         try:
+#             article.save()
+#         except IntegrityError:
+#             raise DropItem("Contains duplicate domain: %s" % item['url'][0])
+#         return item
 
 
 

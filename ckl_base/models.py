@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Outlet(models.Model):
-    name = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=140, null=True)
     outlet_url = models.CharField(max_length=140)
     pub_date = models.DateTimeField(null=True)
     

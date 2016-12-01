@@ -80,7 +80,7 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
 #     'cklchallengescrapy.pipelines.AuthorPipeline': 1000,
 #     'cklchallengescrapy.pipelines.OutletPipeline': 1000,
-    'cklchallengescrapy.pipelines.ArticlePipeline': 1000,
+#     'cklchallengescrapy.pipelines.ArticlePipeline': 1000,
     'cklchallengescrapy.pipelines.NewsOutletPipeline': 1000,
 }
 
